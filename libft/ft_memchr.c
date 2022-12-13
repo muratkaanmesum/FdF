@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:39:59 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 14:28:26 by mmesum           ###   ########.fr       */
+/*   Created: 2022/10/04 17:09:05 by mmesum            #+#    #+#             */
+/*   Updated: 2022/10/13 16:03:14 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-# include <stdio.h>
-# include <stdlib.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t		i;
+	char		value;
+	const char	*s1;
 
-char	*get_next_line(int fd);
-char	*ft_gnl_strchr(const char *str, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_new_arr(char *arr);
-#endif
+	value = c;
+	s1 = s;
+	i = 0;
+	while (i < n)
+	{
+		if (s1[i] == value)
+			return ((char *)&s1[i]);
+		i++;
+	}
+	return (0);
+}

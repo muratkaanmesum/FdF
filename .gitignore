@@ -1,4 +1,5 @@
 *.o
 *.a
 fdf
-
+/.vscode
+.DS_Store

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:39:59 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 14:28:26 by mmesum           ###   ########.fr       */
+/*   Created: 2022/10/07 13:03:48 by mmesum            #+#    #+#             */
+/*   Updated: 2022/10/13 16:10:15 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
+#include <stdlib.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-# include <stdio.h>
-# include <stdlib.h>
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*val;
 
-char	*get_next_line(int fd);
-char	*ft_gnl_strchr(const char *str, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_new_arr(char *arr);
-#endif
+	val = malloc(sizeof(t_list));
+	if (!val)
+		return (0);
+	val->content = content;
+	val->next = NULL;
+	return (val);
+}

@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:39:59 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 14:28:26 by mmesum           ###   ########.fr       */
+/*   Created: 2022/10/07 17:57:05 by mmesum            #+#    #+#             */
+/*   Updated: 2022/10/11 11:04:19 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
+#include <stdlib.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-# include <stdio.h>
-# include <stdlib.h>
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*str;
+	size_t	i;
+	size_t	total;
 
-char	*get_next_line(int fd);
-char	*ft_gnl_strchr(const char *str, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_new_arr(char *arr);
-#endif
+	total = count * size;
+	if (total < count)
+		return (0);
+	str = malloc(count * size);
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (i < count * size)
+	{
+		str[i] = 0;
+		i++;
+	}
+	return (str);
+}

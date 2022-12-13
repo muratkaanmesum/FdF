@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:39:59 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 14:28:26 by mmesum           ###   ########.fr       */
+/*   Created: 2022/10/03 18:11:15 by mmesum            #+#    #+#             */
+/*   Updated: 2022/10/13 13:16:37 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-# include <stdio.h>
-# include <stdlib.h>
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*str;
 
-char	*get_next_line(int fd);
-char	*ft_gnl_strchr(const char *str, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_new_arr(char *arr);
-#endif
+	str = b;
+	i = 0;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+	}
+	return (str);
+}

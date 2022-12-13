@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:39:59 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 14:28:26 by mmesum           ###   ########.fr       */
+/*   Created: 2022/10/04 15:54:59 by mmesum            #+#    #+#             */
+/*   Updated: 2022/10/10 16:29:43 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+char	*ft_strrchr(const char *str, int c)
+{
+	int		i;
+	char	value;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-# include <stdio.h>
-# include <stdlib.h>
-
-char	*get_next_line(int fd);
-char	*ft_gnl_strchr(const char *str, int c);
-char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_new_arr(char *arr);
-#endif
+	value = c;
+	i = 0;
+	while (*(str + i))
+		i++;
+	while (i > -1)
+	{
+		if (str[i] == value)
+			return ((char *)&str[i]);
+		i--;
+	}
+	return (0);
+}

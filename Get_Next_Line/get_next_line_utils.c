@@ -6,13 +6,13 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:40:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/10/31 13:25:40 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:34:42 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_gnl_strchr(const char *str, int c)
 {
 	int		i;
 	char	value;
@@ -48,7 +48,7 @@ static int	findlen(const char *str)
 	return (scount);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		i;

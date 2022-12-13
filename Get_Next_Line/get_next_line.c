@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:39:57 by mmesum            #+#    #+#             */
-/*   Updated: 2022/10/31 15:35:43 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:53:30 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*read_line(int fd, char *arr)
 	if (!buff)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(arr, '\n') && read_bytes != 0)
+	while (!ft_gnl_strchr(arr, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -34,7 +34,7 @@ static char	*read_line(int fd, char *arr)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		arr = ft_strjoin(arr, buff);
+		arr = ft_gnl_strjoin(arr, buff);
 	}
 	free(buff);
 	return (arr);
