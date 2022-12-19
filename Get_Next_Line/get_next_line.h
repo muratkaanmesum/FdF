@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:39:59 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 14:28:26 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/19 12:47:08 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
 # endif
-# include <stdio.h>
+# include <fcntl.h>
 # include <stdlib.h>
 
 char	*get_next_line(int fd);

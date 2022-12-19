@@ -6,14 +6,11 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:39:57 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/13 15:53:30 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/16 15:40:34 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 static char	*read_line(int fd, char *arr)
