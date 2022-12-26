@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/26 17:33:56 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/26 22:16:15 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw_map(char **map, t_img *img)
 		x = 0;
 		while (str[j])
 		{
-			color = ft_substr(str[j], ft_strchr(str[j], ',') - str[i] + 1, 6);
+			//color = ft_substr(str[j], ft_strchr(str[j], ',') - str[i] + 1, 6);
 			if (does_include(str[j], ','))
 				draw_line(get_point(x, y, x + 20, y), img, ft_atoi(color));
 			else
@@ -95,6 +95,7 @@ void	draw_map(char **map, t_img *img)
 			j++;
 			x += 20;
 		}
+		free_split(str);
 		y += 20;
 		i++;
 	}
