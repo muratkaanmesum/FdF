@@ -60,10 +60,13 @@ SRCS        :=      ft_Printf/ft_printf.c \
                           ft_Printf/libft/ft_substr.c \
                           ft_Printf/libft/ft_tolower.c \
                           ft_Printf/libft/ft_toupper.c \
-                          get_map.c \
                           Get_Next_Line/get_next_line.c \
                           Get_Next_Line/get_next_line_utils.c \
+                          get_map.c \
                           main.c \
+                          check_map.c \
+                            render_map.c \
+                            utils.c
 
 OBJS        := $(SRCS:.c=.o)
 

@@ -1,4 +1,5 @@
 #include "fdf.h"
+
 char	*get_lines(int fd)
 {
 	char	*line;
@@ -12,6 +13,7 @@ char	*get_lines(int fd)
 		line = get_next_line(fd);
 		if (line != NULL)
 			str = ft_gnl_strjoin(str, line);
+		free(line);
 		i++;
 	}
 	return (str);
