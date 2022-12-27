@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/27 16:11:05 by kaan             ###   ########.fr       */
+/*   Updated: 2022/12/27 19:20:17 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,20 @@ void	draw_map(t_map *map, t_img *img)
 		j = 0;
 		while (j < map->width)
 		{
-			projected_matrix = multiply_matrices(get_rotation_matrix_x(20),
-													2,
-													2,
-													&(map->points[i][j]),
-													1,
-													1);
-			projected_matrix = multiply_matrices(get_projection_matrix(),
-													2,
-													3,
-													projected_matrix,
-													2,
-													1);
+			projected_matrix = multply_rot(get_rotation_matrix_x(10),
+											map->points[i][j]);
+			projected_matrix = multipy_matrix(get_projection_matrix(),
+												*projected_matrix);
+			// projected_matrix = multipy_matrix(get_projection_matrix(),
+			// 									map->points[i][j]);
 			if (projected_matrix->y < 0)
 				projected_matrix->y *= -1;
+			if (projected_matrix->x < 0)
+				projected_matrix->x *= -1;
 			printf("x: %f, y: %f, z: %f\n", projected_matrix->x,
 					projected_matrix->y, projected_matrix->z);
-			my_mlx_pixel_put(img, projected_matrix->x, projected_matrix->y,
-					0x00FFFFFF);
+			my_mlx_pixel_put(img, projected_matrix->x * 20, projected_matrix->y
+					* 20, 0x00FFFFFF);
 			free(projected_matrix);
 			j++;
 		}

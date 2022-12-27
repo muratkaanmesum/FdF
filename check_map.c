@@ -8,7 +8,7 @@ void	error(void)
 int	check_num(char *str)
 {
 	int	i;
-//test
+
 	i = 0;
 	while (str[i] != '\0' && str[i] != ',')
 	{
