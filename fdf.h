@@ -25,7 +25,7 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*mlx_win;
 }			t_mlx;
-typedef struct s_point
+typedef struct s_line_point
 {
 	int		x_start;
 	int		y_start;
@@ -38,10 +38,29 @@ typedef struct s_point
 	int		color;
 	int		x_sign;
 	int		y_sign;
+}			t_line_point;
+typedef struct s_point
+{
+	int		x;
+	int		y;
+	int		z;
+	int		color;
 }			t_point;
+typedef struct s_map
+{
+	t_point	**points;
+	int		width;
+	int		height;
 
-char		**get_map(char *str);
+}			t_map;
+
+t_map		*get_map(char *file_name);
 int			check_map(char **map);
 int			does_include(char *str, char c);
-t_img		*render_map(char **map, t_mlx *mlx);
+t_img		*render_map(t_map *map, t_mlx *mlx);
+t_point		**get_points(char **map);
+int			get_map_length(char **map);
+t_point		*multipy_matrix(t_point *matrix1, t_point matrix2);
+t_point		*get_projection_matrix(void);
+
 #endif

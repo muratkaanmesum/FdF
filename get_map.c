@@ -19,12 +19,14 @@ char	*get_lines(int fd)
 	return (str);
 }
 
-char	**get_map(char *file_name)
+t_map	*get_map(char *file_name)
 {
 	int		fd;
-	char	**map;
+	char	**map_arr;
 	char	*str;
+	t_map	*map;
 
+	map = malloc(sizeof(t_map));
 	file_name = "test_maps/42.fdf";
 	fd = open(file_name, O_RDONLY, 0777);
 	if (fd == -1)
@@ -33,6 +35,10 @@ char	**get_map(char *file_name)
 		return (NULL);
 	}
 	str = get_lines(fd);
-	map = ft_split(str, '\n');
+	map_arr = ft_split(str, '\n');
+	check_map(map_arr);
+	map->points = get_points(map_arr);
+	map->height = 11;
+	map->width = 19;
 	return (map);
 }

@@ -66,7 +66,9 @@ SRCS        :=      ft_Printf/ft_printf.c \
                           main.c \
                           check_map.c \
                             render_map.c \
-                            utils.c
+                            utils.c \
+                            get_points.c \
+                            matrices.c \
 
 OBJS        := $(SRCS:.c=.o)
 

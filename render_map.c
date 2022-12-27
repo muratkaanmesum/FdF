@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/26 22:16:15 by kaan             ###   ########.fr       */
+/*   Updated: 2022/12/27 15:14:52 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	dst = img->address + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
-t_point	*get_point(int start_x, int start_y, int end_x, int end_y)
-{
-	t_point	*p;
 
-	p = malloc(sizeof(t_point));
+t_line_point	*get_line_point(int start_x, int start_y, int end_x, int end_y)
+{
+	t_line_point	*p;
+
+	p = malloc(sizeof(t_line_point));
 	p->x_start = start_x;
 	p->y_start = start_y;
 	p->x_end = end_x;
@@ -43,7 +44,7 @@ t_point	*get_point(int start_x, int start_y, int end_x, int end_y)
 	return (p);
 }
 
-void	draw_line(t_point *p, t_img *img, int color)
+void	draw_line(t_line_point *p, t_img *img, int color)
 {
 	int	x;
 	int	y;
@@ -67,41 +68,29 @@ void	draw_line(t_point *p, t_img *img, int color)
 	}
 	free(p);
 }
-void	draw_map(char **map, t_img *img)
+void	draw_map(t_map *map, t_img *img)
 {
 	int		i;
-	int		x;
-	int		y;
-	char	**str;
-	char	*color;
 	int		j;
+	t_point	*projected_matrix;
 
 	i = 0;
-	x = 0;
-	y = 20;
-	j = 0;
-	while (map[i])
+	while (i < map->height)
 	{
-		str = ft_split(map[i], ' ');
 		j = 0;
-		x = 0;
-		while (str[j])
+		while (j < map->width)
 		{
-			//color = ft_substr(str[j], ft_strchr(str[j], ',') - str[i] + 1, 6);
-			if (does_include(str[j], ','))
-				draw_line(get_point(x, y, x + 20, y), img, ft_atoi(color));
-			else
-				draw_line(get_point(x, y, x + 20, y), img, 0xFFFFFF);
+			projected_matrix = multipy_matrix(get_projection_matrix(),
+												map->points[i][j]);
+			my_mlx_pixel_put(img, projected_matrix->x * 50, projected_matrix->y
+					* 20, 0x00FFFFFF);
 			j++;
-			x += 20;
 		}
-		free_split(str);
-		y += 20;
 		i++;
 	}
 }
 
-t_img	*render_map(char **map, t_mlx *mlx)
+t_img	*render_map(t_map *map, t_mlx *mlx)
 {
 	t_img	*img;
 
