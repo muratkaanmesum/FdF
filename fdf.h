@@ -41,9 +41,9 @@ typedef struct s_line_point
 }			t_line_point;
 typedef struct s_point
 {
-	int		x;
-	int		y;
-	int		z;
+	double	x;
+	double	y;
+	double	z;
 	int		color;
 }			t_point;
 typedef struct s_map
@@ -56,11 +56,14 @@ typedef struct s_map
 
 t_map		*get_map(char *file_name);
 int			check_map(char **map);
+t_point		*multiply_matrices(t_point *matrix1, int rows1, int columns1,
+				t_point *matrix2, int rows2, int columns2);
 int			does_include(char *str, char c);
 t_img		*render_map(t_map *map, t_mlx *mlx);
 t_point		**get_points(char **map);
 int			get_map_length(char **map);
 t_point		*multipy_matrix(t_point *matrix1, t_point matrix2);
+t_point		*get_rotation_matrix_x(double angle);
 t_point		*get_projection_matrix(void);
 
 #endif
