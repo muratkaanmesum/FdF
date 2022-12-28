@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/28 13:06:51 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/28 16:56:24 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,27 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-t_line_point	*get_line_point(int start_x, int start_y, int end_x, int end_y)
+t_line_point	*get_line_point(t_point start, t_point end)
 {
-	t_line_point	*p;
+	t_line_point	*point;
 
-	p = malloc(sizeof(t_line_point));
-	p->x_start = start_x;
-	p->y_start = start_y;
-	p->x_end = end_x;
-	p->y_end = end_y;
-	p->delta_x = abs(p->x_end - p->x_start);
-	p->delta_y = abs(p->y_end - p->y_start);
-	p->error = p->delta_x - p->delta_y;
-	if (p->x_start < p->x_end)
-		p->x_sign = 1;
+	point = malloc(sizeof(t_line_point));
+	point->x_start = start.x;
+	point->y_start = start.y;
+	point->x_end = end.x;
+	point->y_end = end.y;
+	point->delta_x = abs(point->x_end - point->x_start);
+	point->delta_y = abs(point->y_end - point->y_start);
+	if (point->x_start < point->x_end)
+		point->x_sign = 1;
 	else
-		p->x_sign = -1;
-	if (p->y_start < p->y_end)
-		p->y_sign = 1;
+		point->x_sign = -1;
+	if (point->y_start < point->y_end)
+		point->y_sign = 1;
 	else
-		p->y_sign = -1;
-	return (p);
+		point->y_sign = -1;
+	point->error = point->delta_x - point->delta_y;
+	return (point);
 }
 
 void	draw_line(t_line_point *p, t_img *img, int color)
@@ -68,6 +68,44 @@ void	draw_line(t_line_point *p, t_img *img, int color)
 	}
 	free(p);
 }
+
+void	draw_lines(t_point **projected_points, t_img *img, t_map *map)
+{
+	t_line_point	*point;
+	int				i;
+	int				j;
+
+	if (i + 1 > map->height || j + 1 > map->width)
+		return ;
+	i = 0;
+	j = 0;
+	while (i < map->height)
+	{
+		while (j < map->width)
+		{
+			if (i + 1 < map->height)
+			{
+				point = get_line_point(projected_points[i][j],
+										projected_points[i + 1][j]);
+				point->x_end += 1;
+				point->y_end += 1;
+				draw_line(point, img, 0x00FFFFFF);
+			}
+			if (j + 1 < map->width)
+			{
+				point = get_line_point(projected_points[i][j],
+										projected_points[i][j + 1]);
+				point->x_end += 1;
+				point->y_end += 1;
+				draw_line(point, img, 0x00FFFFFF);
+			}
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+}
+
 void	draw_map(t_map *map, t_img *img)
 {
 	int		i;
@@ -76,17 +114,7 @@ void	draw_map(t_map *map, t_img *img)
 
 	projected_matrix = get_modified_points(map, 0.8);
 	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			my_mlx_pixel_put(img, projected_matrix[i][j].x * 20,
-					projected_matrix[i][j].y * 20, 0x00FFFFFF);
-			j++;
-		}
-		i++;
-	}
+	draw_lines(projected_matrix, img, map);
 }
 
 t_img	*render_map(t_map *map, t_mlx *mlx)
