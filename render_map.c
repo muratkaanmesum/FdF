@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/28 12:16:02 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/28 13:06:51 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,27 +72,17 @@ void	draw_map(t_map *map, t_img *img)
 {
 	int		i;
 	int		j;
-	t_point	*projected_matrix;
+	t_point	**projected_matrix;
 
+	projected_matrix = get_modified_points(map, 0.8);
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
-			projected_matrix = multply_rot(get_rotation_matrix_x(0.8),
-											map->points[i][j]);
-			projected_matrix = multipy_matrix(get_projection_matrix(),
-												*projected_matrix);
-			// projected_matrix = multipy_matrix(get_projection_matrix(),
-			// 									map->points[i][j]);
-			if (projected_matrix->y < 0)
-				projected_matrix->y *= -1;
-			if (projected_matrix->x < 0)
-				projected_matrix->x *= -1;
-			my_mlx_pixel_put(img, projected_matrix->x * 50, projected_matrix->y
-					* 50, 0x00FFFFFF);
-			free(projected_matrix);
+			my_mlx_pixel_put(img, projected_matrix[i][j].x * 20,
+					projected_matrix[i][j].y * 20, 0x00FFFFFF);
 			j++;
 		}
 		i++;

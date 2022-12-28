@@ -17,7 +17,7 @@ t_point	*get_projection_matrix(void)
 	return (matrix);
 }
 
-t_point	*multipy_matrix(t_point *matrix1, t_point matrix2)
+t_point	*multipy_matrix_proj(t_point *matrix1, t_point matrix2)
 {
 	int		i;
 	int		j;
@@ -53,35 +53,6 @@ t_point	*get_rotation_matrix_x(double angle)
 	matrix[2].y = sin(angle);
 	matrix[2].z = cos(angle);
 	return (matrix);
-}
-t_point	*multiply_matrices(t_point *matrix1, int rows1, int columns1,
-		t_point *matrix2, int rows2, int columns2)
-{
-	t_point	*result;
-	t_point	sum;
-
-	result = malloc(rows1 * columns2 * sizeof(t_point));
-	sum.x = 0;
-	sum.y = 0;
-	sum.z = 0;
-	sum.color = 0;
-	for (int i = 0; i < rows1; i++)
-	{
-		for (int j = 0; j < columns2; j++)
-		{
-			for (int k = 0; k < columns1; k++)
-			{
-				sum.x += matrix1[i * columns1 + k].x * matrix2[k * columns2
-					+ j].x;
-				sum.y += matrix1[i * columns1 + k].y * matrix2[k * columns2
-					+ j].y;
-				sum.z += matrix1[i * columns1 + k].z * matrix2[k * columns2
-					+ j].z;
-			}
-			result[i * columns2 + j] = sum;
-		}
-	}
-	return (result);
 }
 
 t_point	*multply_rot(t_point *matrix1, t_point matrix2)
