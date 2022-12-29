@@ -20,8 +20,8 @@ t_point	*get_point(char *str, int x, int y)
 	points = malloc(sizeof(t_point) * (get_map_length(strs) + 1));
 	while (strs[i])
 	{
-		points[i].x = (double)i + 10;
-		points[i].y = (double)y + 10;
+		points[i].x = (double)i + WINDOW_WIDTH / 2;
+		points[i].y = (double)y + WINDOW_HEIGHT / 2;
 		points[i].z = (double)ft_atoi(strs[i]);
 		i++;
 	}

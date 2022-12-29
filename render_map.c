@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/28 16:56:24 by mmesum           ###   ########.fr       */
+/*   Updated: 2022/12/29 15:46:22 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,35 +74,29 @@ void	draw_lines(t_point **projected_points, t_img *img, t_map *map)
 	t_line_point	*point;
 	int				i;
 	int				j;
+	int				spacing;
 
-	if (i + 1 > map->height || j + 1 > map->width)
-		return ;
-	i = 0;
-	j = 0;
+	spacing = 0;
 	while (i < map->height)
 	{
+		j = 0;
 		while (j < map->width)
 		{
-			if (i + 1 < map->height)
-			{
-				point = get_line_point(projected_points[i][j],
-										projected_points[i + 1][j]);
-				point->x_end += 1;
-				point->y_end += 1;
-				draw_line(point, img, 0x00FFFFFF);
-			}
-			if (j + 1 < map->width)
+			if (j < map->width - 1)
 			{
 				point = get_line_point(projected_points[i][j],
 										projected_points[i][j + 1]);
-				point->x_end += 1;
-				point->y_end += 1;
+				draw_line(point, img, 0x00FFFFFF);
+			}
+			if (i < map->height - 1)
+			{
+				point = get_line_point(projected_points[i][j],
+										projected_points[i + 1][j]);
 				draw_line(point, img, 0x00FFFFFF);
 			}
 			j++;
 		}
 		i++;
-		j = 0;
 	}
 }
 

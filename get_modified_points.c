@@ -1,10 +1,27 @@
 #include "fdf.h"
 
+t_point	*multiply_scale()
+{
+	t_point	*matrix;
+
+	matrix = malloc(sizeof(t_point) * 2);
+	matrix[0].x = 2;
+	matrix[0].y = 0;
+	matrix[0].z = 0;
+	matrix[0].color = 0;
+	matrix[1].x = 0;
+	matrix[1].y = 1;
+	matrix[1].z = 0;
+	matrix[1].color = 0;
+	return (matrix);
+}
 t_point	matrix_application(t_point point, double angle)
 {
 	t_point	*projection_matrix;
 	t_point	*rotation_matrix;
 	t_point	*result;
+	int		distance;
+	int		z;
 
 	projection_matrix = get_projection_matrix();
 	rotation_matrix = get_rotation_matrix_x(angle);

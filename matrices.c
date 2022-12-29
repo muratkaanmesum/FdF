@@ -1,7 +1,7 @@
 #include "fdf.h"
 #include "math.h"
 
-t_point	*get_projection_matrix(void)
+t_point	*get_projection_matrix()
 {
 	t_point	*matrix;
 
@@ -16,7 +16,21 @@ t_point	*get_projection_matrix(void)
 	matrix[1].color = 0;
 	return (matrix);
 }
+t_point	*get_scaling_matrix(void)
+{
+	t_point	*matrix;
 
+	matrix = malloc(sizeof(t_point) * 2);
+	matrix[0].x = 1.2;
+	matrix[0].y = 0;
+	matrix[0].z = 0;
+	matrix[0].color = 0;
+	matrix[1].x = 0;
+	matrix[1].y = 1.2;
+	matrix[1].z = 0;
+	matrix[1].color = 0;
+	return (matrix);
+}
 t_point	*multipy_matrix_proj(t_point *matrix1, t_point matrix2)
 {
 	int		i;
