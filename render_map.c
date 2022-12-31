@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2022/12/31 19:45:35 by kaan             ###   ########.fr       */
+/*   Updated: 2022/12/31 20:07:03 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	draw_map(t_map *map, t_img *img)
 {
 	t_point	**projected_matrix;
 
-	projected_matrix = get_modified_points(map, 2, 2.5);
+	projected_matrix = get_modified_points(map, 2, 0);
 	draw_lines(projected_matrix, img, map);
 }
 

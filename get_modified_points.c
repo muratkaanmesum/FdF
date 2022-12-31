@@ -23,13 +23,16 @@ t_point	matrix_application(t_point point, double angle_x, double angle_y)
 	t_point	*rotation_matrix_y;
 	int		distance;
 	int		z;
+	t_point	*_2d_rotation;
 
+	_2d_rotation = get_2d_rotation_matrix(0);
 	projection_matrix = get_projection_matrix();
 	rotation_matrix_x = get_rotation_matrix_x(angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(angle_y);
 	result = malloc(sizeof(t_point));
 	result = multply_rot(rotation_matrix_x, point);
 	result = multply_rot(rotation_matrix_y, *result);
+	result = multipy_matrix_proj(_2d_rotation, *result);
 	result = multipy_matrix_proj(projection_matrix, *result);
 	return (*result);
 }
