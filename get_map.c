@@ -38,7 +38,7 @@ t_map	*get_map(char *file_name)
 	map_arr = ft_split(str, '\n');
 	check_map(map_arr);
 	map->points = get_points(map_arr);
-	map->width = get_map_length(&map_arr[0]);
+	map->width = 19;
 	map->height = get_map_length(map_arr);
 	return (map);
 }

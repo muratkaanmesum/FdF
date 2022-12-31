@@ -11,7 +11,8 @@ int	main(int argc, char **argv)
 	map = get_map(argv[1]);
 	i = 0;
 	mlx->mlx = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 1920, 1080, "Hello world!");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
+			"Hello world!");
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, render_map(map, mlx)->img,
 			0, 0);
 	mlx_loop(mlx->mlx);
