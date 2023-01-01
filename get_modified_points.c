@@ -25,14 +25,14 @@ t_point	matrix_application(t_point point, double angle_x, double angle_y)
 	int		z;
 	t_point	*_2d_rotation;
 
-	_2d_rotation = get_2d_rotation_matrix(0);
 	projection_matrix = get_projection_matrix();
+	_2d_rotation = get_2d_rotation_matrix(0.2);
 	rotation_matrix_x = get_rotation_matrix_x(angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(angle_y);
 	result = malloc(sizeof(t_point));
 	result = multply_rot(rotation_matrix_x, point);
 	result = multply_rot(rotation_matrix_y, *result);
-	result = multipy_matrix_proj(_2d_rotation, *result);
+	result = multply_rot(_2d_rotation, *result);
 	result = multipy_matrix_proj(projection_matrix, *result);
 	return (*result);
 }
@@ -52,8 +52,8 @@ t_point	**get_modified_points(t_map *map, double angle_x, double angle_y)
 		{
 			points[i][j] = matrix_application(map->points[i][j], angle_x,
 					angle_y);
-			points[i][j].x = WINDOW_WIDTH / 2 - points[i][j].x;
-			points[i][j].y = WINDOW_HEIGHT / 2 - points[i][j].y;
+			points[i][j].x = WINDOW_WIDTH / 2 + points[i][j].x;
+			points[i][j].y = WINDOW_HEIGHT / 2 + points[i][j].y;
 			points[i][j].color = map->points[i][j].color;
 			j++;
 		}

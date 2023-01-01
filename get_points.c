@@ -9,19 +9,21 @@ int	get_map_length(char **map)
 	return (i);
 }
 
-t_point	*get_point(char *str, int x, int y)
+t_point	*get_point(char *str, int x, int y, int map_height)
 {
 	t_point	*points;
 	char	**strs;
 	int		i;
+	int		width;
 
+	//test
 	i = 0;
 	strs = ft_split(str, ' ');
 	points = malloc(sizeof(t_point) * (get_map_length(strs) + 1));
 	while (strs[i])
 	{
-		points[i].x = (double)i;
-		points[i].y = (double)y;
+		points[i].x = (double)(i - get_map_length(strs) / 2);
+		points[i].y = (double)(y - map_height / 2);
 		points[i].z = (double)ft_atoi(strs[i]);
 		if (points[i].z > 0)
 			points[i].color = 1829593;
@@ -29,6 +31,7 @@ t_point	*get_point(char *str, int x, int y)
 			points[i].color = 0x00FFFFFF;
 		i++;
 	}
+	free_split(strs);
 	return (points);
 }
 
@@ -44,7 +47,7 @@ t_point	**get_points(char **map)
 	while (map[i])
 	{
 		points[i] = get_point(map[i], i, get_map_length(map)
-				- get_map_length(&map[i]));
+				- get_map_length(&map[i]), get_map_length(map));
 		i++;
 	}
 	return (points);

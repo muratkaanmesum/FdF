@@ -18,7 +18,18 @@ char	*get_lines(int fd)
 	}
 	return (str);
 }
+int	get_width(char **strs)
+{
+	int		i;
+	char	**line;
 
+	i = 0;
+	line = ft_split(strs[0], ' ');
+	while (line[i])
+		i++;
+	free_split(line);
+	return (i);
+}
 t_map	*get_map(char *file_name)
 {
 	int		fd;
@@ -38,7 +49,7 @@ t_map	*get_map(char *file_name)
 	map_arr = ft_split(str, '\n');
 	check_map(map_arr);
 	map->points = get_points(map_arr);
-	map->width = 19;
+	map->width = get_width(map_arr);
 	map->height = get_map_length(map_arr);
 	return (map);
 }

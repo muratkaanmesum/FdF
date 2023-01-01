@@ -11,6 +11,7 @@ void	free_split(char **split)
 	}
 	free(split);
 }
+
 int	does_include(char *str, char c)
 {
 	int	i;
