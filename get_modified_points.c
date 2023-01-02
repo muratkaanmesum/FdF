@@ -1,40 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_modified_points.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/02 14:47:02 by mmesum            #+#    #+#             */
+/*   Updated: 2023/01/02 15:52:31 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-t_point	*multiply_scale()
-{
-	t_point	*matrix;
-
-	matrix = malloc(sizeof(t_point) * 2);
-	matrix[0].x = 2;
-	matrix[0].y = 0;
-	matrix[0].z = 0;
-	matrix[0].color = 0;
-	matrix[1].x = 0;
-	matrix[1].y = 1;
-	matrix[1].z = 0;
-	matrix[1].color = 0;
-	return (matrix);
-}
 t_point	matrix_application(t_point point, double angle_x, double angle_y)
 {
 	t_point	*projection_matrix;
 	t_point	*rotation_matrix_x;
-	t_point	*result;
 	t_point	*rotation_matrix_y;
-	int		distance;
-	int		z;
 	t_point	*_2d_rotation;
 
 	projection_matrix = get_projection_matrix();
 	_2d_rotation = get_2d_rotation_matrix(0.2);
 	rotation_matrix_x = get_rotation_matrix_x(angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(angle_y);
-	result = malloc(sizeof(t_point));
-	result = multply_rot(rotation_matrix_x, point);
-	result = multply_rot(rotation_matrix_y, *result);
-	result = multply_rot(_2d_rotation, *result);
-	result = multipy_matrix_proj(projection_matrix, *result);
-	return (*result);
+	multply_rot(rotation_matrix_x, &point);
+	multply_rot(rotation_matrix_y, &point);
+	multply_rot(_2d_rotation, &point);
+	apply_2x2_matrix(projection_matrix, &point);
+	free(projection_matrix);
+	free(rotation_matrix_x);
+	free(rotation_matrix_y);
+	free(_2d_rotation);
+	//
+	return (point);
 }
 t_point	**get_modified_points(t_map *map, double angle_x, double angle_y)
 {

@@ -6,6 +6,7 @@ char	*get_lines(int fd)
 	char	*str;
 	int		i;
 
+	line = NULL;
 	str = NULL;
 	i = 0;
 	while (line != NULL || i == 0)
