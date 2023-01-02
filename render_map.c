@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/01 12:53:18 by kaan             ###   ########.fr       */
+/*   Updated: 2023/01/02 12:49:06 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,25 @@ void	draw_lines(t_point **projected_points, t_img *img, t_map *map)
 	}
 }
 
+void	free_points(t_point **points, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(points[i]);
+		i++;
+	}
+	free(points);
+}
 void	draw_map(t_map *map, t_img *img)
 {
 	t_point	**projected_matrix;
 
 	projected_matrix = get_modified_points(map, 3.2, 0.05);
 	draw_lines(projected_matrix, img, map);
+	free_points(projected_matrix, map);
 }
 
 t_img	*render_map(t_map *map, t_mlx *mlx)
