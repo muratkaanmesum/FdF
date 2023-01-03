@@ -1,17 +1,17 @@
 #include "fdf.h"
 #include "math.h"
 
-t_point	*get_projection_matrix(int scale)
+t_point	*get_projection_matrix(int scale_x, int scale_y)
 {
 	t_point	*matrix;
 
 	matrix = malloc(sizeof(t_point) * 2);
-	matrix[0].x = scale;
+	matrix[0].x = scale_x;
 	matrix[0].y = 0;
 	matrix[0].z = 0;
 	matrix[0].color = 0;
 	matrix[1].x = 0;
-	matrix[1].y = scale / 2;
+	matrix[1].y = scale_y;
 	matrix[1].z = 0;
 	matrix[1].color = 0;
 	return (matrix);

@@ -15,7 +15,6 @@ t_point	*get_point(char *str, int y, int map_height)
 	char	**strs;
 	int		i;
 
-	//test
 	i = 0;
 	strs = ft_split(str, ' ');
 	points = malloc(sizeof(t_point) * (get_map_length(strs) + 1));
@@ -26,7 +25,7 @@ t_point	*get_point(char *str, int y, int map_height)
 		points[i].z = (double)ft_atoi(strs[i]);
 		if (ft_strchr(strs[i], ','))
 			points[i].color = hex_to_decimal(ft_strchr(strs[i], ',') + 1);
-		else if (points[i].z > 0)
+		else if (points[i].z != 0)
 			points[i].color = 1829593;
 		else
 			points[i].color = 0x00FFFFFF;

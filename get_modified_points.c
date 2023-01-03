@@ -6,20 +6,20 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:47:02 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/03 17:02:17 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:07:11 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 t_point	matrix_application(t_point point, double angle_x, double angle_y,
-		int scale)
+		int scale_x, int scale_y)
 {
 	t_point	*projection_matrix;
 	t_point	*rotation_matrix_x;
 	t_point	*rotation_matrix_y;
 
-	projection_matrix = get_projection_matrix(scale);
+	projection_matrix = get_projection_matrix(scale_x, scale_y);
 	rotation_matrix_x = get_rotation_matrix_x(angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(angle_y);
 	multply_rot(rotation_matrix_x, &point);
@@ -47,10 +47,10 @@ t_point	**get_modified_points(t_map *map, double angle_x, double angle_y,
 		{
 			if (map->points[i][j].z != 0)
 				points[i][j] = matrix_application(map->points[i][j], angle_x,
-						angle_y, scale / 2);
+						angle_y, scale, scale / 1.5);
 			else
 				points[i][j] = matrix_application(map->points[i][j], angle_x,
-						angle_y, scale);
+						angle_y, scale, scale);
 			points[i][j].x = (mlx->window_width / 2) + points[i][j].x;
 			points[i][j].y = mlx->window_height / 2 - points[i][j].y;
 			points[i][j].color = map->points[i][j].color;

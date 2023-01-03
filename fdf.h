@@ -64,7 +64,7 @@ t_point		**get_points(char **map);
 int			get_map_length(char **map);
 void		apply_2x2_matrix(t_point *matrix1, t_point *matrix2);
 t_point		*get_rotation_matrix_x(double angle);
-t_point		*get_projection_matrix(int scale);
+t_point		*get_projection_matrix(int scale_x, int scale_y);
 void		multply_rot(t_point *matrix1, t_point *matrix2);
 t_point		**get_modified_points(t_map *map, double angle_x, double angle_y,
 				int scale, t_mlx *mlx);
