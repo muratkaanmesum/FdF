@@ -43,7 +43,7 @@ t_map	*get_map(char *file_name)
 	fd = open(file_name, O_RDONLY, 0777);
 	if (fd == -1)
 	{
-		printf("Error: file not found\n");
+		ft_printf("Error: file not found\n");
 		return (NULL);
 	}
 	str = get_lines(fd);

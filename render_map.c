@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/02 16:27:38 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/03 16:59:48 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,21 @@ void	free_points(t_point **points, t_map *map)
 	}
 	free(points);
 }
-void	draw_map(t_map *map, t_img *img)
+int	get_scale(t_map *map)
+{
+	int	scale;
+
+	scale = 0;
+	scale = WINDOW_WIDTH / map->width;
+	return (scale);
+}
+void	draw_map(t_map *map, t_img *img, t_mlx *mlx)
 {
 	t_point	**projected_matrix;
+	int		scale;
 
-	projected_matrix = get_modified_points(map, 3.2, 0.05);
+	scale = get_scale(map);
+	projected_matrix = get_modified_points(map, 4.2, 0.5, scale, mlx);
 	draw_lines(projected_matrix, img, map);
 	free_points(projected_matrix, map);
 }
@@ -129,9 +139,9 @@ t_img	*render_map(t_map *map, t_mlx *mlx)
 	t_img	*img;
 
 	img = malloc(sizeof(t_img));
-	img->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	img->img = mlx_new_image(mlx->mlx, mlx->window_width, mlx->window_height);
 	img->address = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
-	draw_map(map, img);
+	draw_map(map, img, mlx);
 	return (img);
 }

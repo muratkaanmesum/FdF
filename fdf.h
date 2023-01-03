@@ -24,6 +24,8 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
+	int		window_width;
+	int		window_height;
 }			t_mlx;
 typedef struct s_line_point
 {
@@ -62,9 +64,10 @@ t_point		**get_points(char **map);
 int			get_map_length(char **map);
 void		apply_2x2_matrix(t_point *matrix1, t_point *matrix2);
 t_point		*get_rotation_matrix_x(double angle);
-t_point		*get_projection_matrix();
+t_point		*get_projection_matrix(int scale);
 void		multply_rot(t_point *matrix1, t_point *matrix2);
-t_point		**get_modified_points(t_map *map, double angle_x, double angle_y);
+t_point		**get_modified_points(t_map *map, double angle_x, double angle_y,
+				int scale, t_mlx *mlx);
 t_point		*get_rotation_matrix_y(double angle);
 t_point		*get_2d_rotation_matrix(double angle);
 void		free_split(char **split);
