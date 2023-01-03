@@ -65,11 +65,12 @@ SRCS        :=      ft_Printf/ft_printf.c \
                           get_map.c \
                           main.c \
                           check_map.c \
-                            render_map.c \
-                            utils.c \
-                            get_points.c \
-                            matrices.c \
-                            get_modified_points.c \
+                          render_map.c \
+                          utils.c \
+                          get_points.c \
+                          matrices.c \
+                          get_modified_points.c \
+                          Convert_to_int.c \
 
 OBJS        := $(SRCS:.c=.o)
 

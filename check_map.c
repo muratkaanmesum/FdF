@@ -22,7 +22,6 @@ int	check_num(char *str)
 int	check_all_nums(char **map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (map[i] != NULL)
