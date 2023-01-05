@@ -59,12 +59,13 @@ typedef struct s_all
 {
 	t_map	*map;
 	t_mlx	*mlx;
+	t_img	*img;
 }			t_all;
 
 t_map		*get_map(char *file_name);
 int			check_map(char **map);
 int			does_include(char *str, char c);
-t_img		*render_map(t_map *map, t_mlx *mlx);
+t_img		*render_map(t_all *all);
 t_point		**get_points(char **map);
 int			get_map_length(char **map);
 void		apply_2x2_matrix(t_point *matrix1, t_point *matrix2);
@@ -79,5 +80,5 @@ void		free_split(char **split);
 void		free_all(t_all *all);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int			hex_to_decimal(const char *hex);
-void		clear_img(t_img *img);
+void		clear_img(t_all *all);
 #endif

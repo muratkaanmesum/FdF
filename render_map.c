@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/05 16:38:23 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:57:02 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,15 +135,17 @@ void	draw_map(t_map *map, t_img *img, t_mlx *mlx)
 	free_points(projected_matrix, map);
 }
 
-t_img	*render_map(t_map *map, t_mlx *mlx)
+t_img	*render_map(t_all *all)
 {
 	t_img	*img;
 
 	img = malloc(sizeof(t_img));
-	img->img = mlx_new_image(mlx->mlx, mlx->window_width, mlx->window_height);
+	img->img = mlx_new_image(all->mlx->mlx, all->mlx->window_width,
+			all->mlx->window_height);
 	img->address = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
-	clear_img(img);
-	draw_map(map, img, mlx);
+	all->img = img;
+	clear_img(all);
+	draw_map(all->map, all->img, all->mlx);
 	return (img);
 }
