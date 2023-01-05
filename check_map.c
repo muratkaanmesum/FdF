@@ -45,11 +45,10 @@ int	check_row_length(char **map)
 		tmp = ft_split(map[i], ' ');
 		while (tmp[j] != NULL)
 		{
-			free(tmp[count]);
 			count++;
 			j++;
 		}
-		free(tmp);
+		free_split(tmp);
 		if (count2 == -1)
 			count2 = count;
 		else if (count2 != count)

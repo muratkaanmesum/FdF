@@ -26,17 +26,18 @@ int	does_include(char *str, char c)
 	return (0);
 }
 
-void	free_all(t_map *map, t_mlx *mlx)
+void	free_all(t_all *all)
 {
 	int	i;
 
 	i = 0;
-	while (i < map->height)
+	while (i < all->map->height)
 	{
-		free(map->points[i]);
+		free(all->map->points[i]);
 		i++;
 	}
-	free(map->points);
-	free(map);
-	free(mlx);
+	free(all->map->points);
+	free(all->map);
+	free(all->mlx);
+	free(all);
 }

@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:47:02 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/03 17:07:11 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:14:32 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_point	**get_modified_points(t_map *map, double angle_x, double angle_y,
 			else
 				points[i][j] = matrix_application(map->points[i][j], angle_x,
 						angle_y, scale, scale);
-			points[i][j].x = (mlx->window_width / 2) + points[i][j].x;
-			points[i][j].y = mlx->window_height / 2 - points[i][j].y;
+			points[i][j].x = mlx->window_width / 2 + points[i][j].x;
+			points[i][j].y = mlx->window_height / 2 + points[i][j].y;
 			points[i][j].color = map->points[i][j].color;
 			j++;
 		}

@@ -55,6 +55,11 @@ typedef struct s_map
 	int		height;
 
 }			t_map;
+typedef struct s_all
+{
+	t_map	*map;
+	t_mlx	*mlx;
+}			t_all;
 
 t_map		*get_map(char *file_name);
 int			check_map(char **map);
@@ -71,6 +76,6 @@ t_point		**get_modified_points(t_map *map, double angle_x, double angle_y,
 t_point		*get_rotation_matrix_y(double angle);
 t_point		*get_2d_rotation_matrix(double angle);
 void		free_split(char **split);
-void		free_all(t_map *map, t_mlx *mlx);
+void		free_all(t_all *all);
 int			hex_to_decimal(const char *hex);
 #endif

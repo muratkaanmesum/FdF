@@ -1,10 +1,24 @@
 #include "fdf.h"
 
+int	close_window(int keycode, t_all *all)
+{
+	ft_printf("keycode: %d", keycode);
+	if (keycode == 53)
+	{
+		//might need to delete this
+		mlx_destroy_window(all->mlx->mlx, all->mlx->mlx_win);
+		free_all(all);
+		exit(0);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	*map;
 	t_mlx	*mlx;
 	t_img	*img;
+	t_all	*all;
 
 	if (argc < 2)
 	{
@@ -22,7 +36,10 @@ int	main(int argc, char **argv)
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->window_width,
 			mlx->window_height, "FdF");
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, img->img, 0, 0);
+	all = malloc(sizeof(t_all));
+	all->map = map;
+	all->mlx = mlx;
+	mlx_key_hook(mlx->mlx_win, close_window, all);
 	mlx_loop(mlx->mlx);
-	free_all(map, mlx);
 	return (0);
 }
