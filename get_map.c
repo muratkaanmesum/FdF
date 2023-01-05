@@ -39,7 +39,7 @@ t_map	*get_map(char *file_name)
 	t_map	*map;
 
 	map = malloc(sizeof(t_map));
-	file_name = "test_maps/elem-fract.fdf";
+	file_name = "test_maps/42.fdf";
 	fd = open(file_name, O_RDONLY, 0777);
 	if (fd == -1)
 	{

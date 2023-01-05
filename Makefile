@@ -71,6 +71,7 @@ SRCS        :=      ft_Printf/ft_printf.c \
                           matrices.c \
                           get_modified_points.c \
                           Convert_to_int.c \
+                          clear_img.c \
 
 OBJS        := $(SRCS:.c=.o)
 

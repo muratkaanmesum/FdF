@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/03 17:07:14 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:38:23 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,15 @@ void	free_points(t_point **points, t_map *map)
 	}
 	free(points);
 }
+
 int	get_scale(t_map *map)
 {
 	int	scale;
 
-	scale = 0;
 	scale = WINDOW_WIDTH / map->width;
 	return (scale);
 }
+
 void	draw_map(t_map *map, t_img *img, t_mlx *mlx)
 {
 	t_point	**projected_matrix;
@@ -142,6 +143,7 @@ t_img	*render_map(t_map *map, t_mlx *mlx)
 	img->img = mlx_new_image(mlx->mlx, mlx->window_width, mlx->window_height);
 	img->address = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
+	clear_img(img);
 	draw_map(map, img, mlx);
 	return (img);
 }

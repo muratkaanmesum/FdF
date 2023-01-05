@@ -77,5 +77,7 @@ t_point		*get_rotation_matrix_y(double angle);
 t_point		*get_2d_rotation_matrix(double angle);
 void		free_split(char **split);
 void		free_all(t_all *all);
+void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int			hex_to_decimal(const char *hex);
+void		clear_img(t_img *img);
 #endif
