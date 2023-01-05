@@ -2,7 +2,7 @@
 
 int	close_window(int keycode, t_all *all)
 {
-	ft_printf("keycode: %d", keycode);
+	ft_printf("keycode: %d\n", keycode);
 	if (keycode == 53)
 	{
 		//might need to delete this
@@ -10,9 +10,25 @@ int	close_window(int keycode, t_all *all)
 		free_all(all);
 		exit(0);
 	}
+	//a = 0 d = 2 w = 13 s = 1
+	if (keycode == 0)
+	{
+		clear_img(all->img);
+	}
 	return (0);
 }
-
+int	zoom_window(int keycode, t_all *all)
+{
+	(void)all;
+	if (keycode == 4)
+	{
+	}
+	//zoom out
+	if (keycode == 5)
+	{
+	}
+	return (0);
+}
 int	main(int argc, char **argv)
 {
 	t_map	*map;
@@ -40,6 +56,7 @@ int	main(int argc, char **argv)
 	all->map = map;
 	all->mlx = mlx;
 	mlx_key_hook(mlx->mlx_win, close_window, all);
+	mlx_mouse_hook(mlx->mlx_win, zoom_window, all);
 	mlx_loop(mlx->mlx);
 	return (0);
 }
