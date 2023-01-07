@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/05 16:57:02 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/07 15:54:37 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_line_point	*get_line_point(t_point start, t_point end)
 	return (point);
 }
 
-void	draw_line(t_line_point *p, t_img *img, int color)
+void	draw_line(t_line_point *p, t_all *all, int color)
 {
 	int	x;
 	int	y;
@@ -53,7 +53,9 @@ void	draw_line(t_line_point *p, t_img *img, int color)
 	y = p->y_start;
 	while (x != p->x_end || y != p->y_end)
 	{
-		my_mlx_pixel_put(img, x, y, color);
+		if (x >= 0 && x < all->mlx->window_width && y >= 0
+			&& y < all->mlx->window_height)
+			my_mlx_pixel_put(all->img, x, y, color);
 		p->delta_error = 2 * p->error;
 		if (p->delta_error > -p->delta_y)
 		{
@@ -69,34 +71,34 @@ void	draw_line(t_line_point *p, t_img *img, int color)
 	free(p);
 }
 
-void	draw_lines(t_point **projected_points, t_img *img, t_map *map)
+void	draw_lines(t_point **projected_points, t_all *all)
 {
 	t_line_point	*point;
 	int				i;
 	int				j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < all->map->height)
 	{
 		j = 0;
-		while (j < map->width - 1)
+		while (j < all->map->width - 1)
 		{
 			point = get_line_point(projected_points[i][j],
 									projected_points[i][j + 1]);
-			draw_line(point, img, projected_points[i][j].color);
+			draw_line(point, all, projected_points[i][j].color);
 			j++;
 		}
 		i++;
 	}
 	j = 0;
-	while (j < map->width)
+	while (j < all->map->width)
 	{
 		i = 0;
-		while (i < map->height - 1)
+		while (i < all->map->height - 1)
 		{
 			point = get_line_point(projected_points[i][j],
 									projected_points[i + 1][j]);
-			draw_line(point, img, projected_points[i][j].color);
+			draw_line(point, all, projected_points[i][j].color);
 			i++;
 		}
 		j++;
@@ -116,23 +118,22 @@ void	free_points(t_point **points, t_map *map)
 	free(points);
 }
 
-int	get_scale(t_map *map)
+double	get_scale(t_all *all)
 {
 	int	scale;
 
-	scale = WINDOW_WIDTH / map->width;
+	scale = all->mlx->window_width / all->map->width;
 	return (scale);
 }
 
-void	draw_map(t_map *map, t_img *img, t_mlx *mlx)
+void	draw_map(t_all *all)
 {
 	t_point	**projected_matrix;
 	int		scale;
 
-	scale = get_scale(map);
-	projected_matrix = get_modified_points(map, 4.2, 0.5, scale, mlx);
-	draw_lines(projected_matrix, img, map);
-	free_points(projected_matrix, map);
+	projected_matrix = get_modified_points(all);
+	draw_lines(projected_matrix, all);
+	free_points(projected_matrix, all->map);
 }
 
 t_img	*render_map(t_all *all)
@@ -146,6 +147,6 @@ t_img	*render_map(t_all *all)
 			&img->endian);
 	all->img = img;
 	clear_img(all);
-	draw_map(all->map, all->img, all->mlx);
+	draw_map(all);
 	return (img);
 }

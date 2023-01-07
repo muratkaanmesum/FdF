@@ -17,15 +17,22 @@ int	close_window(int keycode, t_all *all)
 	}
 	return (0);
 }
-int	zoom_window(int keycode, t_all *all)
+int	zoom_window(int keycode, int x, int y, t_all *all)
 {
-	(void)all;
 	if (keycode == 4)
 	{
+		all->settings->scale += 0.5;
+		clear_img(all);
+		draw_map(all);
 	}
 	//zoom out
 	if (keycode == 5)
 	{
+		all->settings->scale -= 0.5;
+		clear_img(all);
+		draw_map(all);
+		mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->img->img,
+				0, 0);
 	}
 	return (0);
 }
@@ -43,14 +50,18 @@ int	main(int argc, char **argv)
 	}
 	mlx = malloc(sizeof(t_mlx));
 	all = malloc(sizeof(t_all));
+	all->settings = malloc(sizeof(t_settings));
 	map = get_map(argv[1]);
 	if (map == NULL)
 		exit(0);
 	mlx->window_height = 1080;
-	mlx->window_width = 1920;
+	mlx->window_width = 1368;
 	mlx->mlx = mlx_init();
 	all->map = map;
 	all->mlx = mlx;
+	all->settings->scale = get_scale(all);
+	all->settings->angle_x = 4.2;
+	all->settings->angle_y = 0.5;
 	img = render_map(all);
 	all->img = img;
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->window_width,
