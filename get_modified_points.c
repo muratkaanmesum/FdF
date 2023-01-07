@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:47:02 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/07 15:36:04 by kaan             ###   ########.fr       */
+/*   Updated: 2023/01/07 17:00:47 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ t_point	**get_modified_points(t_all *all)
 													all->settings);
 			else
 				points[i][j] = matrix_application(all->map->points[i][j],
-						all->settings);
-			points[i][j].x = all->mlx->window_width / 2 + points[i][j].x;
-			points[i][j].y = all->mlx->window_height / 2 + points[i][j].y;
+													all->settings);
+			points[i][j].x = (all->mlx->window_width / 2 + points[i][j].x)
+				+ all->settings->x_offset;
+			points[i][j].y = (all->mlx->window_height / 2 + points[i][j].y)
+				+ all->settings->y_offset;
 			points[i][j].color = all->map->points[i][j].color;
 			j++;
 		}

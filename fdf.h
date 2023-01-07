@@ -60,6 +60,8 @@ typedef struct s_settings
 	double		angle_x;
 	double		angle_y;
 	double		scale;
+	int			x_offset;
+	int			y_offset;
 }				t_settings;
 typedef struct s_all
 {

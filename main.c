@@ -31,6 +31,26 @@ int	close_window(int keycode, t_all *all)
 		all->settings->angle_y += 0.1;
 		draw_map(all);
 	}
+	else if (keycode == 65361)
+	{
+		all->settings->x_offset -= 10;
+		draw_map(all);
+	}
+	else if (keycode == 65363)
+	{
+		all->settings->x_offset += 10;
+		draw_map(all);
+	}
+	else if (keycode == 65362)
+	{
+		all->settings->y_offset -= 10;
+		draw_map(all);
+	}
+	else if (keycode == 65364)
+	{
+		all->settings->y_offset += 10;
+		draw_map(all);
+	}
 	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->img->img, 0,
 			0);
 	return (0);
@@ -78,6 +98,8 @@ int	main(int argc, char **argv)
 	all->settings->scale = get_scale(all);
 	all->settings->angle_x = 0;
 	all->settings->angle_y = 0;
+	all->settings->x_offset = 0;
+	all->settings->y_offset = 0;
 	img = render_map(all);
 	all->img = img;
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->window_width,
