@@ -88,5 +88,5 @@ void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int				hex_to_decimal(const char *hex);
 void			clear_img(t_all *all);
 double			get_scale(t_all *all);
-void			draw_map(all);
+void			draw_map(t_all *all);
 #endif

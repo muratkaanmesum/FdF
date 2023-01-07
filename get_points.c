@@ -26,9 +26,9 @@ t_point	*get_point(char *str, int y, int map_height)
 		if (ft_strchr(strs[i], ','))
 			points[i].color = hex_to_decimal(ft_strchr(strs[i], ',') + 1);
 		else if (points[i].z != 0)
-			points[i].color = 1829593;
+			points[i].color = 0x002956DB;
 		else
-			points[i].color = 0x00FFFFFF;
+			points[i].color = 0x00EBEBC2;
 		i++;
 	}
 	free_split(strs);

@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/07 15:54:37 by kaan             ###   ########.fr       */
+/*   Updated: 2023/01/07 16:09:09 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void	draw_map(t_all *all)
 	t_point	**projected_matrix;
 	int		scale;
 
+	clear_img(all);
 	projected_matrix = get_modified_points(all);
 	draw_lines(projected_matrix, all);
 	free_points(projected_matrix, all->map);
@@ -146,7 +147,6 @@ t_img	*render_map(t_all *all)
 	img->address = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
 	all->img = img;
-	clear_img(all);
 	draw_map(all);
 	return (img);
 }

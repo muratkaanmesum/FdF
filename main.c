@@ -11,10 +11,28 @@ int	close_window(int keycode, t_all *all)
 		exit(0);
 	}
 	//a = 0 d = 2 w = 13 s = 1
-	if (keycode == 0)
+	if (keycode == 115)
 	{
-		clear_img(all);
+		all->settings->angle_x -= 0.1;
+		draw_map(all);
 	}
+	else if (keycode == 119)
+	{
+		all->settings->angle_x += 0.1;
+		draw_map(all);
+	}
+	else if (keycode == 97)
+	{
+		all->settings->angle_y -= 0.1;
+		draw_map(all);
+	}
+	else if (keycode == 100)
+	{
+		all->settings->angle_y += 0.1;
+		draw_map(all);
+	}
+	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->img->img, 0,
+			0);
 	return (0);
 }
 int	zoom_window(int keycode, int x, int y, t_all *all)
@@ -22,18 +40,16 @@ int	zoom_window(int keycode, int x, int y, t_all *all)
 	if (keycode == 4)
 	{
 		all->settings->scale += 0.5;
-		clear_img(all);
 		draw_map(all);
 	}
 	//zoom out
 	if (keycode == 5)
 	{
 		all->settings->scale -= 0.5;
-		clear_img(all);
 		draw_map(all);
-		mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->img->img,
-				0, 0);
 	}
+	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->img->img, 0,
+			0);
 	return (0);
 }
 int	main(int argc, char **argv)
