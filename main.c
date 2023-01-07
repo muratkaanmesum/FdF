@@ -76,8 +76,8 @@ int	main(int argc, char **argv)
 	all->map = map;
 	all->mlx = mlx;
 	all->settings->scale = get_scale(all);
-	all->settings->angle_x = 4.2;
-	all->settings->angle_y = 0.5;
+	all->settings->angle_x = 0;
+	all->settings->angle_y = 0;
 	img = render_map(all);
 	all->img = img;
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->window_width,
