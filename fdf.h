@@ -62,6 +62,7 @@ typedef struct s_settings
 	double		scale;
 	int			x_offset;
 	int			y_offset;
+	int			rotate_y_state;
 }				t_settings;
 typedef struct s_all
 {
@@ -70,7 +71,12 @@ typedef struct s_all
 	t_img		*img;
 	t_settings	*settings;
 }				t_all;
-
+int				handle_keys(int keycode, t_all *all);
+int				handle_mouse_move(int x, int y, t_all *all);
+int				handle_loop(t_all *all);
+void			write_settings(t_all *all);
+void			set_settings(t_all *all);
+int				handle_mouse_click(int keycode, int x, int y, t_all *all);
 t_map			*get_map(char *file_name);
 int				check_map(char **map);
 int				does_include(char *str, char c);
