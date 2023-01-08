@@ -29,7 +29,6 @@ void	translate(int keycode, t_all *all)
 		all->settings->y_offset -= 10;
 	else if (keycode == 65364)
 		all->settings->y_offset += 10;
-	return (0);
 }
 
 int	handle_keys(int keycode, t_all *all)
@@ -72,7 +71,8 @@ int	handle_mouse_click(int keycode, int x, int y, t_all *all)
 	//zoom out
 	else if (keycode == 5)
 	{
-		all->settings->scale -= 0.5;
+		if (all->settings->scale > 0.5)
+			all->settings->scale -= 0.5;
 		draw_map(all);
 	}
 	else if (keycode == 1)
