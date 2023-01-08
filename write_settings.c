@@ -7,6 +7,7 @@ void	set_settings(t_all *all)
 	all->settings->scale = get_scale(all);
 	all->settings->x_offset = 0;
 	all->settings->y_offset = 0;
+	all->settings->color_state = 0;
 	all->settings->rotate_y_state = 0;
 }
 void	write_settings(t_all *all)

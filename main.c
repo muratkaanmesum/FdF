@@ -1,5 +1,10 @@
 #include "fdf.h"
-
+void	assign_hooks(t_all *all)
+{
+	mlx_key_hook(all->mlx->mlx_win, handle_keys, all);
+	mlx_mouse_hook(all->mlx->mlx_win, handle_mouse_click, all);
+	mlx_loop_hook(all->mlx->mlx, handle_loop, all);
+}
 int	main(int argc, char **argv)
 {
 	t_map	*map;
@@ -30,9 +35,7 @@ int	main(int argc, char **argv)
 	img = render_map(all);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, img->img, 0, 0);
 	write_settings(all);
-	mlx_key_hook(mlx->mlx_win, handle_keys, all);
-	mlx_mouse_hook(mlx->mlx_win, handle_mouse_click, all);
-	mlx_loop_hook(mlx->mlx, handle_loop, all);
+	assign_hooks(all);
 	mlx_loop(mlx->mlx);
 	return (0);
 }

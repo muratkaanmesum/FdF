@@ -63,6 +63,7 @@ typedef struct s_settings
 	int			x_offset;
 	int			y_offset;
 	int			rotate_y_state;
+	int			color_state;
 }				t_settings;
 typedef struct s_all
 {
