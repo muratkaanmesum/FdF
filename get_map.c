@@ -39,7 +39,7 @@ t_map	*get_map(char *file_name)
 	t_map	*map;
 
 	map = malloc(sizeof(t_map));
-	file_name = "test_maps/t2.fdf";
+	file_name = "test_maps/MGDS_CENTRAL_AMERICA_OCEAN0_S.fdf";
 	fd = open(file_name, O_RDONLY, 0777);
 	if (fd == -1)
 	{
