@@ -5,6 +5,7 @@ void	error(void)
 	ft_printf("ERROR !\n");
 	exit(0);
 }
+
 int	check_num(char *str)
 {
 	int	i;
@@ -57,6 +58,7 @@ int	check_row_length(char **map)
 	}
 	return (1);
 }
+
 int	check_map(char **map)
 {
 	if (check_all_nums(map) == 0 || check_row_length(map) == 0)

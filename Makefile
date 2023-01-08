@@ -74,6 +74,7 @@ SRCS        :=      ft_Printf/ft_printf.c \
                           clear_img.c \
                           events.c\
                           write_settings.c \
+                          draw_lines.c \
 
 OBJS        := $(SRCS:.c=.o)
 

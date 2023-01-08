@@ -41,3 +41,24 @@ void	free_all(t_all *all)
 	free(all->mlx);
 	free(all);
 }
+
+double	get_scale(t_all *all)
+{
+	int	scale;
+
+	scale = all->mlx->window_width / all->map->width;
+	return (scale);
+}
+
+void	free_points(t_point **points, t_map *map)
+{
+	int i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(points[i]);
+		i++;
+	}
+	free(points);
+}

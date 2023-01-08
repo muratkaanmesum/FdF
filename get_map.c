@@ -19,6 +19,7 @@ char	*get_lines(int fd)
 	}
 	return (str);
 }
+
 int	get_width(char **strs)
 {
 	int		i;
@@ -31,6 +32,7 @@ int	get_width(char **strs)
 	free_split(line);
 	return (i);
 }
+
 t_map	*get_map(char *file_name)
 {
 	int		fd;
