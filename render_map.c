@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:08:01 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/07 22:29:02 by kaan             ###   ########.fr       */
+/*   Updated: 2023/01/08 15:46:31 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,8 @@ void	draw_map(t_all *all)
 	free_points(projected_matrix, all->map);
 	mlx_put_image_to_window(all->mlx->mlx, all->mlx->mlx_win, all->img->img, 0,
 			0);
-	write_settings(all);
+	if (all->settings->write_toggle == 1)
+		write_settings(all);
 }
 
 t_img	*render_map(t_all *all)

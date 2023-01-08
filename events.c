@@ -18,7 +18,6 @@ void	rotate(int keycode, t_all *all)
 		all->settings->angle_y -= 0.1;
 	else if (keycode == 100)
 		all->settings->angle_y += 0.1;
-	draw_map(all);
 }
 void	translate(int keycode, t_all *all)
 {
@@ -48,21 +47,18 @@ int	handle_keys(int keycode, t_all *all)
 	if (keycode == 115 || keycode == 119 || keycode == 97 || keycode == 100)
 		rotate(keycode, all);
 	//translate
-	if (keycode == 65361 || keycode == 65362 || keycode == 65363
-		|| keycode == 65364)
+	else if (keycode == 65361 || keycode == 65362 || keycode == 65363
+			|| keycode == 65364)
 		translate(keycode, all);
 	else if (keycode == 114)
 		all->settings->rotate_y_state = all->settings->rotate_y_state != 1;
 	else if (keycode == 99)
-	{
 		all->settings->color_state = all->settings->color_state != 1;
-		draw_map(all);
-	}
-	return (0);
-}
-int	handle_mouse_move(int x, int y, t_all *all)
-{
-	(void)all;
+	else if (keycode == 32)
+		set_settings(all);
+	else if (keycode == 104)
+		all->settings->write_toggle = all->settings->write_toggle != 1;
+	draw_map(all);
 	return (0);
 }
 
@@ -74,9 +70,19 @@ int	handle_mouse_click(int keycode, int x, int y, t_all *all)
 		draw_map(all);
 	}
 	//zoom out
-	if (keycode == 5)
+	else if (keycode == 5)
 	{
 		all->settings->scale -= 0.5;
+		draw_map(all);
+	}
+	else if (keycode == 1)
+	{
+		all->settings->height += 0.1;
+		draw_map(all);
+	}
+	else if (keycode == 3)
+	{
+		all->settings->height -= 0.1;
 		draw_map(all);
 	}
 	return (0);

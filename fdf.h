@@ -60,6 +60,8 @@ typedef struct s_settings
 	double		angle_x;
 	double		angle_y;
 	double		scale;
+	double		height;
+	int			write_toggle;
 	int			x_offset;
 	int			y_offset;
 	int			rotate_y_state;

@@ -9,6 +9,27 @@ void	set_settings(t_all *all)
 	all->settings->y_offset = 0;
 	all->settings->color_state = 0;
 	all->settings->rotate_y_state = 0;
+	all->settings->height = 1;
+	all->settings->write_toggle = 1;
+}
+void	write_controls(t_all *all)
+{
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 50, 0xFFFFFF,
+			"Controls:");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 100, 0xFFFFFF,
+			"W A S D ROTATE");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 120, 0xFFFFFF,
+			"Arrow Keys TRANSLATE");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 140, 0xFFFFFF,
+			"R TOGGLE AUTO ROTATE");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 160, 0xFFFFFF,
+			"C TOGGLE COLOR");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 180, 0xFFFFFF,
+			"Scrool Wheel ZOOM");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 200, 0xFFFFFF,
+			"Press H to hide this menu");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 220, 0xFFFFFF,
+			"Space to Reset");
 }
 void	write_settings(t_all *all)
 {
@@ -21,6 +42,7 @@ void	write_settings(t_all *all)
 	angle_y = ft_itoa(all->settings->angle_y);
 	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 10, 0xFFFFFF,
 			"Press ESC to exit");
+	write_controls(all);
 	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 300, 0xFFFFFF,
 			"Scale = ");
 	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 60, 300, 0xFFFFFF, scale);

@@ -6,7 +6,7 @@
 /*   By: kaan <kaan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:47:02 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/08 14:20:50 by kaan             ###   ########.fr       */
+/*   Updated: 2023/01/08 15:58:23 by kaan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_point	matrix_application(t_point point, t_settings *settings)
 	t_point	*rotation_matrix_y;
 
 	projection_matrix = get_projection_matrix(settings->scale,
-												settings->scale);
+												settings->scale
+													/ settings->height);
 	rotation_matrix_x = get_rotation_matrix_x(settings->angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(settings->angle_y);
 	multply_rot(rotation_matrix_x, &point);
