@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:08:35 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/09 13:08:10 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:11:31 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	check_num(char *str)
 	i = 0;
 	while (str[i] != '\0' && str[i] != ',')
 	{
+		if (str[i] == '-' && i == 0 && ft_isdigit(str[i + 1]) == 1)
+			i++;
 		if (ft_isdigit(str[i]) == 0)
 			return (0);
 		i++;
