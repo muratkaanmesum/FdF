@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:08:31 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/09 12:58:48 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:37:31 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	handle_keys(int keycode, t_all *all)
 		set_settings(all);
 	else if (keycode == 4)
 		all->settings->write_toggle = all->settings->write_toggle != 1;
+	else if (keycode == 35)
+		all->settings->parallel = all->settings->parallel != 1;
 	draw_map(all);
 	return (0);
 }

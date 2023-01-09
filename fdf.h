@@ -66,6 +66,7 @@ typedef struct s_settings
 	int			y_offset;
 	int			rotate_y_state;
 	int			color_state;
+	int			parallel;
 }				t_settings;
 typedef struct s_all
 {
@@ -74,6 +75,7 @@ typedef struct s_all
 	t_img		*img;
 	t_settings	*settings;
 }				t_all;
+t_point			*get_parallel_projection_matrix(double angle);
 int				handle_keys(int keycode, t_all *all);
 int				handle_mouse_move(int x, int y, t_all *all);
 int				handle_loop(t_all *all);

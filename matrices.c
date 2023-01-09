@@ -17,6 +17,20 @@ t_point	*get_projection_matrix(int scale_x, int scale_y)
 	return (matrix);
 }
 
+t_point	*get_parallel_projection_matrix(double angle)
+{
+	t_point	*matrix;
+
+	matrix = malloc(sizeof(t_point) * 2);
+	matrix[0].x = 1;
+	matrix[0].y = 0;
+	matrix[0].z = cos(angle) * cos(angle) / sin(angle);
+	matrix[1].x = 0;
+	matrix[1].y = 1;
+	matrix[1].z = cos(angle) * sin(angle) / sin(angle);
+	return (matrix);
+}
+
 void	apply_2x2_matrix(t_point *matrix1, t_point *matrix2)
 {
 	int	i;

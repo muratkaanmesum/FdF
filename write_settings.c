@@ -30,6 +30,8 @@ void	write_controls(t_all *all)
 			"Press H to hide this menu");
 	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 220, 0xFFFFFF,
 			"Space to Reset");
+	mlx_string_put(all->mlx->mlx, all->mlx->mlx_win, 10, 240, 0xFFFFFF,
+			"Press P to parallel projection");
 }
 void	write_settings(t_all *all)
 {
