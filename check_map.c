@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/09 12:08:35 by mmesum            #+#    #+#             */
+/*   Updated: 2023/01/09 13:08:10 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	error(void)
@@ -22,13 +34,28 @@ int	check_num(char *str)
 
 int	check_all_nums(char **map)
 {
-	int	i;
+	int		i;
+	char	**all_nums;
+	int		j;
 
 	i = 0;
+	j = 0;
 	while (map[i] != NULL)
-		check_num(map[i++]);
+	{
+		j = 0;
+		all_nums = ft_split(map[i], ' ');
+		while (all_nums[j] != NULL)
+		{
+			if (check_num(all_nums[j]) == 0)
+				return (0);
+			j++;
+		}
+		free_split(all_nums);
+		i++;
+	}
 	return (1);
 }
+
 int	check_row_length(char **map)
 {
 	int		i;
@@ -44,11 +71,8 @@ int	check_row_length(char **map)
 		count = 0;
 		j = 0;
 		tmp = ft_split(map[i], ' ');
-		while (tmp[j] != NULL)
-		{
+		while (tmp[j++] != NULL)
 			count++;
-			j++;
-		}
 		free_split(tmp);
 		if (count2 == -1)
 			count2 = count;

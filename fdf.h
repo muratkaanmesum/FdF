@@ -100,5 +100,6 @@ int				hex_to_decimal(const char *hex);
 void			clear_img(t_all *all);
 double			get_scale(t_all *all);
 void			draw_map(t_all *all);
+void			draw_lines(t_point **projected_points, t_all *all);
 void			free_points(t_point **points, t_map *map);
 #endif

@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (map == NULL)
 		exit(0);
 	mlx->window_height = 1080;
-	mlx->window_width = 1368;
+	mlx->window_width = 1920;
 	mlx->mlx = mlx_init();
 	all->map = map;
 	all->mlx = mlx;

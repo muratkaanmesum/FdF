@@ -19,8 +19,8 @@ t_point	matrix_application(t_point point, t_settings *settings)
 	t_point	*rotation_matrix_y;
 
 	projection_matrix = get_projection_matrix(settings->scale,
-												settings->scale
-													/ settings->height);
+			settings->scale
+			/ settings->height);
 	rotation_matrix_x = get_rotation_matrix_x(settings->angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(settings->angle_y);
 	multply_rot(rotation_matrix_x, &point);
@@ -47,7 +47,7 @@ t_point	**get_modified_points(t_all *all)
 		while (j < all->map->width)
 		{
 			points[i][j] = matrix_application(all->map->points[i][j],
-												all->settings);
+						all->settings);
 			points[i][j].x = (all->mlx->window_width / 2 + points[i][j].x)
 				+ all->settings->x_offset;
 			points[i][j].y = (all->mlx->window_height / 2 + points[i][j].y)
