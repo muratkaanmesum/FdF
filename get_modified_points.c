@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:47:02 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/09 13:40:31 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/09 14:01:26 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_point	matrix_application(t_point point, t_settings *settings)
 
 	parallel_matrix = get_parallel_projection_matrix(1);
 	projection_matrix = get_projection_matrix(settings->scale,
-												settings->scale
-													/ settings->height);
+			settings->scale
+			/ settings->height);
 	rotation_matrix_x = get_rotation_matrix_x(settings->angle_x);
 	rotation_matrix_y = get_rotation_matrix_y(settings->angle_y);
 	multply_rot(rotation_matrix_x, &point);
@@ -35,6 +35,18 @@ t_point	matrix_application(t_point point, t_settings *settings)
 	free(rotation_matrix_y);
 	free(parallel_matrix);
 	return (point);
+}
+
+void	add_data(t_point *point, t_all *all, int i, int j)
+{
+	point->x = (all->mlx->window_width / 2 + point->x)
+		+ all->settings->x_offset;
+	point->y = (all->mlx->window_height / 2 + point->y)
+		+ all->settings->y_offset;
+	if (all->settings->color_state == 0)
+		point->color = all->map->points[i][j].color;
+	else
+		point->color = 0xFFFFFF;
 }
 
 t_point	**get_modified_points(t_all *all)
@@ -52,15 +64,8 @@ t_point	**get_modified_points(t_all *all)
 		while (j < all->map->width)
 		{
 			points[i][j] = matrix_application(all->map->points[i][j],
-												all->settings);
-			points[i][j].x = (all->mlx->window_width / 2 + points[i][j].x)
-				+ all->settings->x_offset;
-			points[i][j].y = (all->mlx->window_height / 2 + points[i][j].y)
-				+ all->settings->y_offset;
-			if (all->settings->color_state == 0)
-				points[i][j].color = all->map->points[i][j].color;
-			else
-				points[i][j].color = 0xFFFFFF;
+					all->settings);
+			add_data(&points[i][j], all, i, j);
 			j++;
 		}
 		i++;

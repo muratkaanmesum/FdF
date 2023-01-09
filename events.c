@@ -6,7 +6,7 @@
 /*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:08:31 by mmesum            #+#    #+#             */
-/*   Updated: 2023/01/09 13:37:31 by mmesum           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:45:34 by mmesum           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	handle_keys(int keycode, t_all *all)
 	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
 		rotate(keycode, all);
 	else if (keycode == 126 || keycode == 125 || keycode == 123
-			|| keycode == 124)
+		|| keycode == 124)
 		translate(keycode, all);
 	else if (keycode == 15)
 		all->settings->rotate_y_state = all->settings->rotate_y_state != 1;
@@ -76,6 +76,8 @@ int	handle_keys(int keycode, t_all *all)
 
 int	handle_mouse_click(int keycode, int x, int y, t_all *all)
 {
+	(void)x;
+	(void)y;
 	if (keycode == 4)
 		all->settings->scale += 0.5;
 	else if (keycode == 5)

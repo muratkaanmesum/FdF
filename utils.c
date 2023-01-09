@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/09 14:09:01 by mmesum            #+#    #+#             */
+/*   Updated: 2023/01/09 14:09:05 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
+
 void	free_split(char **split)
 {
 	int	i;
@@ -52,7 +65,7 @@ double	get_scale(t_all *all)
 
 void	free_points(t_point **points, t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)

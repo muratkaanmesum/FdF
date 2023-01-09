@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrices.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/09 14:07:10 by mmesum            #+#    #+#             */
+/*   Updated: 2023/01/09 14:08:44 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-#include "math.h"
 
 t_point	*get_projection_matrix(int scale_x, int scale_y)
 {
@@ -29,19 +40,6 @@ t_point	*get_parallel_projection_matrix(double angle)
 	matrix[1].y = 1;
 	matrix[1].z = cos(angle) * sin(angle) / sin(angle);
 	return (matrix);
-}
-
-void	apply_2x2_matrix(t_point *matrix1, t_point *matrix2)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	matrix2->x = (matrix1[0].x * matrix2->x) + (matrix1[0].y * matrix2->y)
-		+ (matrix1[0].z * matrix2->z);
-	matrix2->y = (matrix1[1].x * matrix2->x) + (matrix1[1].y * matrix2->y)
-		+ (matrix1[1].z * matrix2->z);
 }
 
 t_point	*get_rotation_matrix_y(double angle)
@@ -80,14 +78,4 @@ t_point	*get_rotation_matrix_x(double angle)
 	matrix[2].y = sin(angle);
 	matrix[2].z = cos(angle);
 	return (matrix);
-}
-
-void	multply_rot(t_point *matrix1, t_point *matrix2)
-{
-	matrix2->x = (matrix1[0].x * matrix2->x) + (matrix1[0].y * matrix2->y)
-		+ (matrix1[0].z * matrix2->z);
-	matrix2->y = (matrix1[1].x * matrix2->x) + (matrix1[1].y * matrix2->y)
-		+ (matrix1[1].z * matrix2->z);
-	matrix2->z = (matrix1[2].x * matrix2->x) + (matrix1[2].y * matrix2->y)
-		+ (matrix1[2].z * matrix2->z);
 }

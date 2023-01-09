@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmesum <mmesum@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/09 13:54:03 by mmesum            #+#    #+#             */
+/*   Updated: 2023/01/09 13:54:19 by mmesum           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 # include "Get_Next_Line/get_next_line.h"
@@ -10,8 +22,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WIDTH 1360
-# define WINDOW_HEIGHT 768
 typedef struct s_img
 {
 	void		*img;
